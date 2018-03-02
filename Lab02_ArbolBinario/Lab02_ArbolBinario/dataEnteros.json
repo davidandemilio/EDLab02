@@ -1,0 +1,41 @@
+﻿{
+  "valor": 2,
+  "izquierdo": {
+    "valor": 1,
+    "izquierdo": {
+		"valor": 6,
+		"izquierdo": null,
+		"derecho": null
+	  },
+    "derecho":  {
+		"valor": 8,
+		"izquierdo": null,
+		"derecho": null
+	  }
+  },
+  "derecho": {
+    "valor": 10,
+    "izquierdo": {
+      "valor": 5,
+      "izquierdo": null,
+      "derecho": null
+    },
+    "derecho": {
+      "valor": 333,
+      "izquierdo": {
+        "valor": 5,
+        "izquierdo": null,
+        "derecho": null
+      },
+      "derecho": {
+        "valor": 2,
+        "izquierdo": {
+          "valor": 5,
+          "izquierdo": null,
+          "derecho": null
+        },
+        "derecho": null
+      }
+    }
+  }
+}

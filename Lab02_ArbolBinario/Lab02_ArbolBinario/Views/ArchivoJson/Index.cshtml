@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<h4>Carga Json</h4>
+
+@using (Html.BeginForm("CargaJson", "ArchivoJson", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        <input type="file" name="archivo" />
+        <input type="submit" value="Importar" />
+
+
+        @Html.ActionLink("Ir a Home", "Index", "Home")
+    </div>
+
+
+}
