@@ -7,58 +7,44 @@ using Newtonsoft.Json;
 using System.IO;
 using directorios = System.IO;
 using TDA;
-
-
-
+using Lab02_ArbolBinario.Models;
+using Lab02_ArbolBinario.DBContest;
 namespace Lab02_ArbolBinario.Controllers
 {
-    public class ArchivoJsonController : Controller
+    public class CadenaController : Controller
     {
-        ArbolB AB = new ArbolB();
-        public ActionResult CargaJson(HttpPostedFileBase archivo)
+
+        DefaultConnection<string> db = DefaultConnection<string>.getInstance;
+        public ActionResult CargaJsonCad(HttpPostedFileBase archivo)
         {
-            string pathArchivo = string.Empty;
-            if (archivo != null)
-            {
-                string path = Server.MapPath("~/Cargas/");
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-
-                pathArchivo = path + Path.GetFileName(archivo.FileName);
-                string extension = Path.GetExtension(archivo.FileName);
-                archivo.SaveAs(pathArchivo);
-                Random miRandom = new Random();
-                string archivoJSON = directorios.File.ReadAllText(pathArchivo);
-
-                 AB.Raiz = JsonConvert.DeserializeObject<Nodo>(archivoJSON);
-                // return File("/dataPaises.json", "text/x-json");
-
-            }
+            Carga_de_archivo<string> carga = new Carga_de_archivo<string>();
+            db.AB=carga.Cargajsoninterna(archivo,Server);
             return View();
         }
-
-        // GET: ArchivoJson
+        // GET: Cadena
         public ActionResult Index()
         {
-
-            return View();
+            db.AB.EnOrden(pasar_a_lista);
+            return View(db.datos.ToList());
         }
 
-        // GET: ArchivoJson/Details/5
+        // GET: Cadena/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
+        public void pasar_a_lista(Nodo<string> actual)
+        {
+            db.datos.Add(actual.valor);
+        }
 
-        // GET: ArchivoJson/Create
+        // GET: Cadena/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ArchivoJson/Create
+        // POST: Cadena/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -74,13 +60,13 @@ namespace Lab02_ArbolBinario.Controllers
             }
         }
 
-        // GET: ArchivoJson/Edit/5
+        // GET: Cadena/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ArchivoJson/Edit/5
+        // POST: Cadena/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -96,13 +82,13 @@ namespace Lab02_ArbolBinario.Controllers
             }
         }
 
-        // GET: ArchivoJson/Delete/5
+        // GET: Cadena/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ArchivoJson/Delete/5
+        // POST: Cadena/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

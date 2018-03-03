@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArbolBinario.cs" />
-    <Compile Include="Pais.cs" />
+    <Compile Include="Interfaces\Delegados.cs" />
+    <Compile Include="Interfaces\IArbolBinario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

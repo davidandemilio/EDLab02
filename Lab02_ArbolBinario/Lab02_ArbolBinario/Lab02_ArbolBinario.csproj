@@ -149,11 +149,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ArchivoJsonController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DBContest\DefaultConnection.cs" />
+    <Compile Include="fonts\Controllers\CadenaController.cs" />
+    <Compile Include="fonts\Controllers\Carga_de_archivo.cs" />
+    <Compile Include="fonts\Controllers\EnteroController.cs" />
+    <Compile Include="fonts\Controllers\HomeController.cs" />
+    <Compile Include="fonts\Controllers\PaisController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cadena.cs" />
+    <Compile Include="Models\Entero.cs" />
+    <Compile Include="Models\Pais.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -196,11 +203,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\ArchivoJson\Index.cshtml" />
+    <Content Include="Views\Cadena\Index.cshtml" />
+    <Content Include="Views\Entero\Index.cshtml" />
+    <Content Include="Views\Pais\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
