@@ -14,26 +14,53 @@ namespace Lab02_ArbolBinario.Controllers
     public class CadenaController : Controller
     {
 
-        DefaultConnection<string> db = DefaultConnection<string>.getInstance;
+        DefaultConnection<Cadena> db = DefaultConnection<Cadena>.getInstance;
         public ActionResult CargaJsonCad(HttpPostedFileBase archivo)
         {
+            db.datos.Clear();
             Carga_de_archivo<string> carga = new Carga_de_archivo<string>();
-            db.AB=carga.Cargajsoninterna(archivo,Server);
-            return View();
+            ArbolBinarioBusqueda<string> arbol_ingresar = carga.Cargajsoninterna(archivo, Server);
+            almacenar_en_Cadenas(arbol_ingresar);
+            db.AB.EnOrden(pasar_a_lista);
+
+            return RedirectToAction("Index");
         }
         // GET: Cadena
         public ActionResult Index()
         {
-            db.AB.EnOrden(pasar_a_lista);
             return View(db.datos.ToList());
         }
+
+        [HttpPost]
+        public ActionResult MostrarOrden(string orden)
+        {
+            db.datos.Clear();
+            if (orden == "InOrden")
+            {
+
+                db.AB.EnOrden(pasar_a_lista);
+            }
+            else if (orden == "PostOrden")
+            {
+
+                db.AB.PostOrden(pasar_a_lista);
+
+            }
+            else if (orden == "PreOrden")
+            {
+
+                db.AB.PreOrden(pasar_a_lista);
+            }
+            return RedirectToAction("Index");
+        }
+
 
         // GET: Cadena/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
-        public void pasar_a_lista(Nodo<string> actual)
+        public void pasar_a_lista(Nodo<Cadena> actual)
         {
             db.datos.Add(actual.valor);
         }
@@ -103,5 +130,27 @@ namespace Lab02_ArbolBinario.Controllers
                 return View();
             }
         }
+
+        public void almacenar_en_Cadenas(ArbolBinarioBusqueda<string> arbol_ingresar)
+        {
+            arbol_ingresar.PreOrden(asignar_en_recorrido);
+
+        }
+
+        public void asignar_en_recorrido(Nodo<string> actual)
+        {
+            Cadena cad = new Cadena();
+            cad.valor = actual.valor;
+            Nodo<Cadena> nd_insertar = new Nodo<Cadena>(cad, comparador_cadenas);
+
+            db.AB.Insertar(nd_insertar);
+
+        }
+        public int comparador_cadenas(Cadena actual, Cadena nuevo)
+        {
+            return actual.valor.CompareTo(nuevo.valor);
+
+        }
+
     }
 }

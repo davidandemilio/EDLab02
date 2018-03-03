@@ -1,0 +1,41 @@
+﻿{
+  "valor": "juana",
+  "izquierdo": {
+    "valor": "pedro",
+    "izquierdo": {
+		"valor": "carlos",
+		"izquierdo": null,
+		"derecho": null
+	  },
+    "derecho":  {
+		"valor": "marcos",
+		"izquierdo": null,
+		"derecho": null
+	  }
+  },
+  "derecho": {
+    "valor": "meme",
+    "izquierdo": {
+      "valor": "manuelito",
+      "izquierdo": null,
+      "derecho": null
+    },
+    "derecho": {
+      "valor": "maritza",
+      "izquierdo": {
+        "valor": 5,
+        "izquierdo": null,
+        "derecho": null
+      },
+      "derecho": {
+        "valor": "mirna",
+        "izquierdo": {
+          "valor": "amalia",
+          "izquierdo": null,
+          "derecho": null
+        },
+        "derecho": null
+      }
+    }
+  }
+}

@@ -30,4 +30,41 @@
     </tr>
 }
 
+
+
+
 </table>
+
+@using (Html.BeginForm("CargaJsonCad", "Cadena", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <input type="file" name="archivo" />
+        <input type="submit" value="Importar" />
+
+
+
+    </div>
+}
+
+    @using (Html.BeginForm("MostrarOrden", "Cadena", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+
+            <select name="orden">
+
+                <option>InOrden</option>
+
+                <option>PreOrden</option>
+
+                <option>PostOrden</option>
+
+            </select>
+
+            <input type="submit" value="Seleccionar" />
+
+
+
+        </div>
+
+
+    }
