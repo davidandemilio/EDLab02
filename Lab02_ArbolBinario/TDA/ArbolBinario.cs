@@ -31,32 +31,6 @@ namespace TDA
         {
             return comparador(this.valor, _other);
         }
-
-        public bool isDegenerate()
-        {
-            if (this.izquierdo != null)
-            {
-                if (this.derecho != null)
-                {
-                    return false; // No es degenerado, Tiene 2 hijos
-                }
-                else
-                {
-                    return this.izquierdo.isDegenerate();
-                }
-            }
-            else
-            {
-                if (this.derecho != null)
-                {
-                    return this.derecho.isDegenerate();
-                }
-                else
-                {
-                    return true;
-                }
-            }
-        }
     }
 
     public class ArbolBinarioBusqueda<T>
@@ -99,7 +73,6 @@ namespace TDA
         {
             RecorridoPostOrdenInterno(_recorrido, Raiz);
         }
-
 
         public void PreOrden(RecorridoDelegate<T> _recorrido)
         {
