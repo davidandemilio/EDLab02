@@ -35,6 +35,17 @@ namespace Lab02_ArbolBinario.Controllers
         {
             return View();
         }
+        public void EsDegenerado()
+        {
+            if (db.AB.Raiz.isDegenerate() == false)
+            {
+                Response.Write("El Arbol No es degenerado");
+            }
+            else
+            {
+                Response.Write("El Arbol es degenerado");
+            }
+        }
 
         // POST: Entero/Create
         [HttpPost]
