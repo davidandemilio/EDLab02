@@ -1,0 +1,13 @@
+﻿{
+  "valor": "juan",
+  "izquierdo": {
+    "valor": "analu",
+    "izquierdo":null,
+    "derecho": {
+    "valor": "ernesto",
+    "izquierdo":null,
+    "derecho": null
+  }
+  },
+  "derecho":null
+}
