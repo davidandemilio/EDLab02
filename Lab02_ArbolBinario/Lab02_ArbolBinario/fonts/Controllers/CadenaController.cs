@@ -9,6 +9,8 @@ using directorios = System.IO;
 using TDA;
 using Lab02_ArbolBinario.Models;
 using Lab02_ArbolBinario.DBContest;
+using System.Net;
+
 namespace Lab02_ArbolBinario.Controllers
 {
     public class CadenaController : Controller
@@ -73,11 +75,17 @@ namespace Lab02_ArbolBinario.Controllers
 
         // POST: Cadena/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Include = "valor")]Cadena cadena)
         {
             try
             {
                 // TODO: Add insert logic here
+                Nodo<Cadena> nueva_cadena = new Nodo<Cadena>(cadena, null);
+                nueva_cadena.valor = cadena;
+                db.datos.Clear();
+                db.AB.Insertar(nueva_cadena);
+                db.AB.EnOrden(asignar_comparacion);
+                db.AB.EnOrden(pasar_a_lista);
 
                 return RedirectToAction("Index");
             }
@@ -110,18 +118,33 @@ namespace Lab02_ArbolBinario.Controllers
         }
 
         // GET: Cadena/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Cadena cadena_buscada = db.datos.Find(x => x.valor == id);
+
+            if (cadena_buscada == null)
+            {
+
+                return HttpNotFound();
+            }
+            return View(cadena_buscada);
         }
 
         // POST: Cadena/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
+                db.AB.Eliminar(db.datos.First(x => x.valor == id));
+                db.datos.Clear();
+                db.AB.EnOrden(asignar_comparacion);
+                db.AB.EnOrden(pasar_a_lista);
 
                 return RedirectToAction("Index");
             }
@@ -151,6 +174,9 @@ namespace Lab02_ArbolBinario.Controllers
             return actual.valor.CompareTo(nuevo.valor);
 
         }
-
+        public void asignar_comparacion(Nodo<Cadena> actual)
+        {
+            actual.comparador = comparador_cadenas;
+        }
     }
 }

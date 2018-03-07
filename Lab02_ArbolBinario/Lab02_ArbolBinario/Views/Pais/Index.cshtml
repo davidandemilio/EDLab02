@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Lab02_ArbolBinario.Models.Pais>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Paises";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar Pais", "Create")
 </p>
 <table class="table">
     <tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.Grupo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id=item.nombre }) |
+            @Html.ActionLink("Details", "Details", new { id=item.nombre }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.nombre })
         </td>
     </tr>
 }
