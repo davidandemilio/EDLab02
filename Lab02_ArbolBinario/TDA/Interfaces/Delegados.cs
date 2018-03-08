@@ -8,7 +8,5 @@ namespace TDA.Interfaces
 {
    
         public delegate int ComparadorNodosDelegate<T>(T _actual, T _nuevo);
-
         public delegate void RecorridoDelegate<T>(Nodo<T> _acutal);
-   
 }

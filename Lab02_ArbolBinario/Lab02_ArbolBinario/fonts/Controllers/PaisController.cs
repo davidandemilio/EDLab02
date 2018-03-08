@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Lab02_ArbolBinario.Models;
 using TDA;
 using Lab02_ArbolBinario.DBContest;
+using System.Net;
+
 namespace Lab02_ArbolBinario.Controllers
 {
     public class PaisController : Controller
@@ -64,8 +66,7 @@ namespace Lab02_ArbolBinario.Controllers
 
         public void asignar_comparacion(Nodo<Pais> actual)
         {
-            actual.comparador = comparador_paises;
-           
+            actual.comparador = comparador_paises;          
         }
 
         public int comparador_paises(Pais actual,Pais nuevo)
@@ -96,14 +97,20 @@ namespace Lab02_ArbolBinario.Controllers
         {
             return View();
         }
-
+        
         // POST: Pais/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Include ="nombre,Grupo")]Pais pais) 
         {
             try
             {
-                // TODO: Add insert logic here
+            //TODO: Add insert logic here
+                Nodo<Pais> nuevo_pais = new Nodo<Pais>(pais, null);
+                nuevo_pais.valor = pais;
+                db.datos.Clear();
+                db.AB.Insertar(nuevo_pais);
+                db.AB.EnOrden(asignar_comparacion);
+                db.AB.EnOrden(pasar_a_lista);
 
                 return RedirectToAction("Index");
             }
@@ -136,18 +143,33 @@ namespace Lab02_ArbolBinario.Controllers
         }
 
         // GET: Pais/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Pais pais_buscado = db.datos.Find(x => x.nombre == id);
+
+            if (pais_buscado == null)
+            {
+
+                return HttpNotFound();
+            }
+            return View(pais_buscado);
         }
 
         // POST: Pais/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
+                db.AB.Eliminar(db.datos.First(x => x.nombre == id));
+                db.datos.Clear();
+                db.AB.EnOrden(asignar_comparacion);
+                db.AB.EnOrden(pasar_a_lista);
 
                 return RedirectToAction("Index");
             }

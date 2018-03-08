@@ -206,6 +206,12 @@
     <Content Include="Views\Cadena\Index.cshtml" />
     <Content Include="Views\Entero\Index.cshtml" />
     <Content Include="Views\Pais\Index.cshtml" />
+    <Content Include="Views\Pais\Create.cshtml" />
+    <Content Include="Views\Entero\Create.cshtml" />
+    <Content Include="Views\Cadena\Create.cshtml" />
+    <Content Include="Views\Pais\Delete.cshtml" />
+    <Content Include="Views\Entero\Delete.cshtml" />
+    <Content Include="Views\Cadena\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

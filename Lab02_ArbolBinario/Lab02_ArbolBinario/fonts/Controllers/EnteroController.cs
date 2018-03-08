@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Lab02_ArbolBinario.Models;
 using TDA;
 using Lab02_ArbolBinario.DBContest;
+using System.Net;
+
 namespace Lab02_ArbolBinario.Controllers
 {
     public class EnteroController : Controller
@@ -49,11 +51,17 @@ namespace Lab02_ArbolBinario.Controllers
 
         // POST: Entero/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Include = "valor")]Entero entero)
         {
             try
             {
                 // TODO: Add insert logic here
+                Nodo<Entero> nuevo_entero = new Nodo<Entero>(entero, null);
+                nuevo_entero.valor = entero;
+                db.datos.Clear();
+                db.AB.Insertar(nuevo_entero);
+                db.AB.EnOrden(asignar_comparacion);
+                db.AB.EnOrden(pasar_a_lista);
 
                 return RedirectToAction("Index");
             }
@@ -86,9 +94,20 @@ namespace Lab02_ArbolBinario.Controllers
         }
 
         // GET: Entero/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Entero entero_buscado = db.datos.Find(x => x.valor == id);
+
+            if (entero_buscado == null)
+            {
+
+                return HttpNotFound();
+            }
+            return View(entero_buscado);
         }
 
         // POST: Entero/Delete/5
@@ -98,6 +117,10 @@ namespace Lab02_ArbolBinario.Controllers
             try
             {
                 // TODO: Add delete logic here
+                db.AB.Eliminar(db.datos.First(x => x.valor == id));
+                db.datos.Clear();
+                db.AB.EnOrden(asignar_comparacion);
+                db.AB.EnOrden(pasar_a_lista);
 
                 return RedirectToAction("Index");
             }
@@ -163,6 +186,9 @@ namespace Lab02_ArbolBinario.Controllers
             return actual.valor.CompareTo(nuevo.valor);
 
         }
-
+        public void asignar_comparacion(Nodo<Entero> actual)
+        {
+            actual.comparador = comparador_enteros;
+        }
     }
 }
