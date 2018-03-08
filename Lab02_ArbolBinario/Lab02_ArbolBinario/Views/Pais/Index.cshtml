@@ -81,6 +81,12 @@
     </div>
 }
 
+@using (Html.BeginForm("ITSB", "Pais", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <input type="submit" value="¿El Arbol esta balanceado?" />
+    </div>
+}
 
 
 @Html.ActionLink("Ir a Home", "Index", "Home")

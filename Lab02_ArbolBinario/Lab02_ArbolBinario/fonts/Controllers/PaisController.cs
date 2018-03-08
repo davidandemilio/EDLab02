@@ -86,6 +86,49 @@ namespace Lab02_ArbolBinario.Controllers
             }
         }
 
+        public void ITSB()
+        {
+            if (EstaBalanceado(db.AB.Raiz) == true)
+            {
+                Response.Write("El Arbol esta Balanceado");
+            }
+            else
+            {
+                Response.Write("El Arbol No esta Balanceado");
+            }
+        }
+
+        public static bool EstaBalanceado(Nodo<Pais> nodo)
+        {
+            var mm = new DetMinMax();
+            mm.Minimo = int.MaxValue;
+            mm.Maximo = int.MinValue;
+
+            EncontrarMinMax(mm, nodo, 0);
+
+            return (mm.Maximo - mm.Minimo <= 1) ? true : false;
+        }
+
+        private static void EncontrarMinMax(DetMinMax mm, Nodo<Pais> node, int depth)
+        {
+            if (node == null) return;
+
+            EncontrarMinMax(mm, node.izquierdo, depth + 1);
+            EncontrarMinMax(mm, node.derecho, depth + 1);
+
+            // En el nodo final
+            if (node.izquierdo == null || node.derecho == null)
+            {
+                if (mm.Minimo > depth) mm.Minimo = depth;
+                if (mm.Maximo < depth) mm.Maximo = depth;
+            }
+        }
+        public class DetMinMax
+        {
+            public int Minimo { get; set; }
+            public int Maximo { get; set; }
+        }
+
         // GET: Pais/Details/5
         public ActionResult Details(int id)
         {
