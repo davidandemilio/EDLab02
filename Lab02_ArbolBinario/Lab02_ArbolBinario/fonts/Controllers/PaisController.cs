@@ -71,7 +71,7 @@ namespace Lab02_ArbolBinario.Controllers
 
         public int comparador_paises(Pais actual,Pais nuevo)
         {
-            return actual.nombre.CompareTo(nuevo.nombre);
+            return nuevo.nombre.CompareTo(actual.nombre);
         }
 
         public void EsDegenerado()
