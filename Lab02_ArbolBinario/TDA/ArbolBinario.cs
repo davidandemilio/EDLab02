@@ -32,6 +32,8 @@ namespace TDA
             return comparador(this.valor, _other);
         }
 
+
+
         public bool isDegenerate()
         {
             if (this.izquierdo != null)
@@ -57,6 +59,7 @@ namespace TDA
                 }
             }
         }
+
     }
 
     public class ArbolBinarioBusqueda<T>
