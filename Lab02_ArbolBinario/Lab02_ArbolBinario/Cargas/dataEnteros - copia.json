@@ -1,41 +1,14 @@
 ﻿{
-  "valor": "juana",
+   "valor": 2,
   "izquierdo": {
-    "valor": "pedro",
+    "valor": -2,
     "izquierdo": {
-		"valor": "carlos",
-		"izquierdo": null,
+		"valor": -5,
+	
 		"derecho": null
 	  },
-    "derecho":  {
-		"valor": "marcos",
-		"izquierdo": null,
-		"derecho": null
-	  }
+   "derecho": null
   },
-  "derecho": {
-    "valor": "meme",
-    "izquierdo": {
-      "valor": "manuelito",
-      "izquierdo": null,
-      "derecho": null
-    },
-    "derecho": {
-      "valor": "maritza",
-      "izquierdo": {
-        "valor": 5,
-        "izquierdo": null,
-        "derecho": null
-      },
-      "derecho": {
-        "valor": "mirna",
-        "izquierdo": {
-          "valor": "amalia",
-          "izquierdo": null,
-          "derecho": null
-        },
-        "derecho": null
-      }
-    }
-  }
+
+  "derecho": null
 }
