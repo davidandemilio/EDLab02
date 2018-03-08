@@ -19,7 +19,18 @@ namespace Lab02_ArbolBinario.Controllers
             return View(db.datos.ToList());
         }
 
-       
+        public void EsDegenerado()
+        {
+            if (db.AB.Raiz.isDegenerate() == false)
+            {
+                Response.Write("El Arbol No es degenerado");
+            }
+            else
+            {
+                Response.Write("El Arbol es degenerado");
+            }
+        }
+
         // GET: Entero/Details/5
         public ActionResult Details(int id)
         {

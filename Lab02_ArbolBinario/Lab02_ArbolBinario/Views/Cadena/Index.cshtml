@@ -68,3 +68,10 @@
 
 
     }
+
+@using (Html.BeginForm("EsDegenerado", "Cadena", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <input type="submit" value="¿Es Degenerado?" />
+    </div>
+}
