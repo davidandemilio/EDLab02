@@ -59,7 +59,7 @@ namespace Lab02_ArbolBinario.Controllers
             }
         }
 
-        public static bool EstaBalanceado(Nodo<Cadena> nodo)
+        public static bool EstaBalanceado(Nodo<Entero> nodo)
         {
             var mm = new DetMinMax();
             mm.Minimo = int.MaxValue;
@@ -70,7 +70,7 @@ namespace Lab02_ArbolBinario.Controllers
             return (mm.Maximo - mm.Minimo <= 1) ? true : false;
         }
 
-        private static void EncontrarMinMax(DetMinMax mm, Nodo<Cadena> node, int depth)
+        private static void EncontrarMinMax(DetMinMax mm, Nodo<Entero> node, int depth)
         {
             if (node == null) return;
 
